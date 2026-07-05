@@ -22,23 +22,38 @@ const body = Poppins({
   display: 'swap',
 });
 
+const __jsonld = {"@context":"https://schema.org","@type":"Event","name":"Pertunangan Raka & Sinta","description":"Undangan tunangan digital"};
+
 export const metadata = {
-  metadataBase: new URL('https://undangan.example.com'),
-  title: config.meta.title,
-  description: config.meta.description,
+  metadataBase: new URL("https://undangan-engagement.vercel.app"),
+  title: "Undangan Tunangan Digital — Raka & Sinta",
+  description: "Undangan pertunangan digital yang manis dan elegan: detail acara, galeri foto, lokasi, dan konfirmasi kehadiran dalam satu tautan.",
+  applicationName: "Undangan Digital",
+  keywords: ["undangan tunangan", "undangan lamaran digital", "undangan pertunangan online", "e-invitation tunangan"],
+  authors: [{ name: "Undangan Digital" }],
+  creator: "Undangan Digital",
+  publisher: "Undangan Digital",
+  alternates: { canonical: "https://undangan-engagement.vercel.app" },
   openGraph: {
-    title: config.meta.title,
-    description: config.meta.description,
-    type: 'website',
-    locale: 'id_ID',
-    images: [{ url: config.couple.bride.photo, width: 600, height: 800 }],
+    type: "website",
+    locale: "id_ID",
+    url: "https://undangan-engagement.vercel.app",
+    siteName: "Undangan Digital",
+    title: "Undangan Tunangan Digital — Raka & Sinta",
+    description: "Undangan pertunangan digital yang manis dan elegan: detail acara, galeri foto, lokasi, dan konfirmasi kehadiran dalam satu tautan.",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Undangan Tunangan Digital — Raka & Sinta" }],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: config.meta.title,
-    description: config.meta.description,
+    card: "summary_large_image",
+    title: "Undangan Tunangan Digital — Raka & Sinta",
+    description: "Undangan pertunangan digital yang manis dan elegan: detail acara, galeri foto, lokasi, dan konfirmasi kehadiran dalam satu tautan.",
+    images: ["/og.jpg"],
   },
-  robots: { index: false, follow: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
 };
 
 export const viewport = {
@@ -50,7 +65,8 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="id" className={`${display.variable} ${script.variable} ${body.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">{children}<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(__jsonld) }} />
+        </body>
     </html>
   );
 }
