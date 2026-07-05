@@ -1,0 +1,61 @@
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
+import Reveal from './ui/Reveal';
+import SectionTitle from './ui/SectionTitle';
+import config from '@/lib/data';
+
+// Galeri editorial: strip scroll horizontal dengan snap + lightbox.
+export default function Gallery() {
+  const { gallery } = config;
+  const [active, setActive] = useState(null);
+
+  return (
+    <section className="bg-blush/30 py-24">
+      <div className="mx-auto max-w-4xl px-6">
+        <SectionTitle num="iv" kicker="Moments" title="Galeri" align="left" />
+      </div>
+
+      <Reveal className="mt-12">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {gallery.map((src, i) => (
+            <button
+              key={src}
+              onClick={() => setActive(src)}
+              className="relative aspect-[3/4] w-60 shrink-0 snap-center overflow-hidden md:w-72"
+              aria-label={`Perbesar foto ${i + 1}`}
+            >
+              <Image src={src} alt={`Galeri ${i + 1}`} fill sizes="288px" className="object-cover transition duration-500 hover:scale-105" />
+              <span className="absolute bottom-2 left-3 font-display text-sm italic text-cream mix-blend-difference">
+                0{i + 1}
+              </span>
+            </button>
+          ))}
+        </div>
+      </Reveal>
+
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink/90 p-4"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setActive(null)} role="dialog" aria-modal="true"
+          >
+            <button className="absolute right-5 top-5 text-cream/80 hover:text-cream" onClick={() => setActive(null)} aria-label="Tutup">
+              <X size={28} />
+            </button>
+            <motion.div
+              className="relative h-[70vh] w-full max-w-2xl"
+              initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image src={active} alt="Foto galeri" fill sizes="100vw" className="object-contain" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
