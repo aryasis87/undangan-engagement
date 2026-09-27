@@ -5,7 +5,11 @@ import Reveal from './ui/Reveal';
 import SectionTitle from './ui/SectionTitle';
 
 // Form konfirmasi kehadiran — gaya editorial (input garis bawah).
-// TODO: hubungkan onSubmit ke backend/Firebase nanti.
+// Ini undangan contoh: data tidak dikirim ke mana pun.
+const PESAN_URL =
+  'https://wa.me/6281339908765?text=' +
+  encodeURIComponent('Halo PintuWeb, saya mau pesan undangan tunangan digital seperti contoh Raka & Sinta.');
+
 export default function RSVPForm({ onSubmit }) {
   const [form, setForm] = useState({ name: '', attendance: 'hadir', guests: 1 });
   const [done, setDone] = useState(false);
@@ -33,7 +37,17 @@ export default function RSVPForm({ onSubmit }) {
               <Check size={22} />
             </div>
             <p className="mt-5 font-display text-2xl text-ink">Terima kasih, {form.name}.</p>
-            <p className="mt-1 text-sm text-muted">Konfirmasi Anda telah kami terima.</p>
+            <p className="mt-2 text-sm text-muted">
+              Ini undangan contoh, jadi konfirmasi Anda tidak dikirim ke mana pun.
+            </p>
+            <a
+              href={PESAN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-block text-sm text-rose-deep underline underline-offset-4 hover:text-ink"
+            >
+              Pesan undangan seperti ini
+            </a>
           </Reveal>
         ) : (
           <Reveal className="mt-12">
