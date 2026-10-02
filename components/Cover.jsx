@@ -39,7 +39,7 @@ export default function Cover({ onOpen }) {
           </motion.div>
 
           <div className="relative w-[44%] overflow-hidden border-l border-rose-deep/20">
-            <Image src={couple.bride.photo} alt="" fill priority sizes="44vw" className="object-cover" />
+            <Image src={config.heroImage} alt="" fill priority sizes="44vw" className="object-cover" />
           </div>
         </div>
 

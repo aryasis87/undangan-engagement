@@ -52,23 +52,23 @@ export default function RSVPForm({ onSubmit }) {
         ) : (
           <Reveal className="mt-12">
             <form onSubmit={submit} className="space-y-7">
-              <div>
+              <label className="block">
                 <span className={label}>Nama</span>
                 <input name="name" value={form.name} onChange={handle} placeholder="Nama Anda" className={field} required />
-              </div>
-              <div>
+              </label>
+              <label className="block">
                 <span className={label}>Konfirmasi</span>
                 <select name="attendance" value={form.attendance} onChange={handle} className={field}>
                   <option value="hadir">Hadir</option>
                   <option value="tidak">Tidak Hadir</option>
                   <option value="ragu">Masih Ragu</option>
                 </select>
-              </div>
+              </label>
               {form.attendance === 'hadir' && (
-                <div>
+                <label className="block">
                   <span className={label}>Jumlah Tamu</span>
                   <input type="number" name="guests" min={1} max={10} value={form.guests} onChange={handle} className={field} />
-                </div>
+                </label>
               )}
               <button
                 type="submit"

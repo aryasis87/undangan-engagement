@@ -14,7 +14,7 @@ export default function Hero() {
     <section className="grid min-h-screen grid-cols-1 md:grid-cols-2">
       {/* Foto */}
       <div className="relative h-72 md:h-auto">
-        <Image src={couple.bride.photo} alt="" fill priority sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
+        <Image src={config.heroImage} alt="" fill priority sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
       </div>
 
       {/* Teks */}

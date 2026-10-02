@@ -1,8 +1,9 @@
 'use client';
+import Link from 'next/link';
 import { Share2 } from 'lucide-react';
 import Reveal from './ui/Reveal';
 import config from '@/lib/data';
-import { whatsappShareUrl } from '@/lib/utils';
+import { invitationUrl, whatsappShareUrl } from '@/lib/utils';
 
 // Penutup editorial: monokrom, garis tipis, tipografi besar.
 export default function Footer() {
@@ -11,7 +12,7 @@ export default function Footer() {
   const share = () => {
     const text = `Undangan Tunangan ${couple.groom.name} & ${couple.bride.name}`;
     if (typeof navigator !== 'undefined' && navigator.share) {
-      navigator.share({ title: text, url: window.location.href }).catch(() => {});
+      navigator.share({ title: text, url: invitationUrl() }).catch(() => {});
     } else {
       window.open(whatsappShareUrl(text), '_blank', 'noopener');
     }
@@ -30,8 +31,17 @@ export default function Footer() {
           onClick={share}
           className="mt-10 inline-flex items-center gap-2 border-b border-cream/40 pb-1 text-xs uppercase tracking-widest text-cream transition hover:opacity-60"
         >
-          <Share2 size={14} /> Bagikan
+          <Share2 size={14} aria-hidden="true" /> Bagikan
         </button>
+
+        {config.music.enabled && (
+          <p className="mt-12 text-xs text-cream/70">
+            Musik: {config.music.title} · {config.music.credit}
+          </p>
+        )}
+        <p className="mt-3 text-xs text-cream/70">
+          <Link href="/kirim" className="underline underline-offset-4 hover:text-cream">Kirim undangan ke tamu</Link>
+        </p>
       </Reveal>
     </footer>
   );

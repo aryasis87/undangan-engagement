@@ -22,7 +22,7 @@ const body = Poppins({
   display: 'swap',
 });
 
-const __jsonld = {"@context":"https://schema.org","@type":"Event","name":"Pertunangan Raka & Sinta","description":"Undangan tunangan digital"};
+const __jsonld = {"@context":"https://schema.org","@type":"WebSite","name":"Undangan Tunangan Digital — Raka & Sinta","description":"Contoh undangan lamaran digital bergaya editorial: hitung mundur, galeri, peta, RSVP, ucapan, dan musik latar.","inLanguage":"id"};
 
 export const metadata = {
   metadataBase: new URL("https://undangan-engagement.vercel.app"),

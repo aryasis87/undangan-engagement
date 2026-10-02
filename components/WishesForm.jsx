@@ -28,14 +28,18 @@ export default function WishesForm() {
 
         <Reveal className="mt-12">
           <form onSubmit={submit} className="space-y-5">
+            <label htmlFor="ucapan-nama" className="sr-only">Nama</label>
             <input
+              id="ucapan-nama"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="Nama Anda"
               className="w-full border-b border-rose-deep/30 bg-transparent py-2.5 text-sm outline-none focus:border-rose-deep"
               required
             />
+            <label htmlFor="ucapan-pesan" className="sr-only">Ucapan dan doa</label>
             <textarea
+              id="ucapan-pesan"
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               placeholder="Tulis ucapan & doa..."
@@ -47,7 +51,7 @@ export default function WishesForm() {
               type="submit"
               className="inline-flex items-center gap-2 border-b border-rose-deep pb-1 text-xs uppercase tracking-widest text-rose-deep transition hover:opacity-60"
             >
-              <Send size={14} /> Kirim Ucapan
+              <Send size={14} aria-hidden="true" /> Kirim Ucapan
             </button>
           </form>
         </Reveal>

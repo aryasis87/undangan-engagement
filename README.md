@@ -1,24 +1,55 @@
-# Undangan Digital — Engagement (Tunangan / Lamaran)
+# Undangan Lamaran — Raka & Sinta
+
+Editorial ala majalah: sampul “Issue No. 1” dengan foto dan nama bertumpuk, hitung mundur minimalis bergaris tipis, perjalanan bernomor, dan galeri geser. Pasangan dan keluarganya sama dengan contoh Wedding, sebulan sebelum hari pernikahan.
 
 **Demo live:** https://undangan-engagement.vercel.app
 
 ![Tangkapan layar](public/og.jpg)
 
-> Undangan contoh dengan data fiktif. Formulir RSVP hanya demo dan tidak mengirim data.
+> Contoh dengan data fiktif: nama, tempat, dan nomor rekening tidak sungguhan. Formulir hanya demo dan mengatakannya terus terang. Foto adalah placeholder berlabel yang siap diganti.
 
-Varian undangan pertunangan. Struktur & pola sama dengan template **wedding** (lihat dokumentasinya), hanya berbeda **isi**, **tema warna (sage & gold)**, dan **font (Playfair Display + Sacramento)**.
+## Fitur
 
-## Menjalankan
+- Sampul majalah yang menyapa nama tamu (`?to=Nama`)
+- Hitung mundur minimalis
+- Acara lamaran dengan tombol kalender, peta lokasi
+- Perjalanan bernomor dan galeri geser
+- RSVP & ucapan — mode demo
+- **`/kirim` — alat tuan rumah:** ketik daftar tamu, dapatkan tautan pribadi tiap tamu dan pesan WhatsApp siap kirim. Semua diproses di peramban (localStorage), tanpa server.
+- Musik latar dengan tombol putar/jeda (judul lagu tampil di tombol dan footer)
+- Halaman 404 bergaya sendiri
+
+## Mengganti isi
+
+Seluruh isi ada di satu file: `lib/data.js` (nama, tanggal, acara, galeri, musik, pesan untuk /kirim). Komponen tidak perlu disentuh.
+
+- **Tanggal:** ubah teks tanggal *dan* nilai ISO (`mainDate`, `start`, `end`) — hitung mundur dan tombol kalender memakai nilai ISO.
+- **Peta:** contoh menunjuk area kota; ganti `q=` di `location.mapEmbed` dan `mapLink` dengan nama tempat atau koordinat.
+- **Foto:** timpa berkas di `public/images/` dengan nama yang sama (potret 3:4).
+- **Musik:** timpa `public/music/latar.mp3`, lalu ubah `music.title` dan `music.credit`. Pastikan Anda berhak memakai lagunya.
+
+## Gambar & kredit
+
+- `public/images/*.webp` — placeholder berlabel buatan sendiri (bukan foto stok), digambar ulang dari SVG agar tidak bergantung pada layanan luar.
+- `public/music/latar.mp3` — *Gymnopédie No. 1 — Erik Satie*, rekaman Teknopazzo, CC0 — [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gymnopedie_No._1..ogg). Diperkecil ke MP3 mono 80 kbps.
+
+## Teknologi
+
+- Next.js 15.5 (App Router) dan React 19
+- Tailwind CSS v4 (token tema di `app/globals.css`)
+- Framer Motion, lucide-react
+- Font: Playfair Display, Sacramento, Poppins (next/font)
+- SEO: metadata, Open Graph, JSON-LD (WebSite), sitemap.xml, robots.txt
+
+## Menjalankan secara lokal
+
 ```bash
 npm install
 npm run dev
 ```
 
-## Ubah isi
-Semua konten ada di **`lib/data.js`**. Tema warna di `app/globals.css`, font di `app/layout.js`.
-
-Catatan: amplop digital dimatikan secara default (`gifts.enabled: false`) karena umumnya tidak dipakai untuk acara lamaran.
+Buka http://localhost:3000 — coba juga http://localhost:3000/?to=Nama+Tamu dan http://localhost:3000/kirim.
 
 ---
 
-Bagian dari koleksi 8 undangan digital di [PortalUndangan](https://portal-undangan-eta.vercel.app). Dibuat oleh [PintuWeb](https://pintuweb.com), jasa pembuatan website.
+Bagian dari koleksi 8 undangan digital di [PortalUndangan](https://portal-undangan-eta.vercel.app). Dibuat oleh [PintuWeb](https://www.pintuweb.com), jasa pembuatan website.

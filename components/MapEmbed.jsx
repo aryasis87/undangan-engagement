@@ -22,14 +22,17 @@ export default function MapEmbed() {
             />
           </div>
           <div className="mt-5 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
-            <p className="text-sm text-muted">{location.label}</p>
+            <div>
+              <p className="text-sm text-ink">{location.label}</p>
+              {location.note && <p className="mt-1 text-xs text-muted">{location.note}</p>}
+            </div>
             <a
               href={location.mapLink}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border-b border-rose-deep pb-1 text-xs uppercase tracking-widest text-rose-deep transition hover:opacity-60"
             >
-              <MapPin size={14} /> Buka di Google Maps
+              <MapPin size={14} aria-hidden="true" /> Buka di Google Maps
             </a>
           </div>
         </Reveal>
